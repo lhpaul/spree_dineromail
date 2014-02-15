@@ -7,7 +7,7 @@
 		<%= hidden_field_tag "url_redirect_enabled", "1" %>
 		<%= hidden_field_tag "ok_url", spree.dineromail_success_url(order_number: @order.number) %>
 		<%= hidden_field_tag "pending_url", spree.dineromail_pending_url(order_number: @order.number) %>
-		<%= hidden_field_tag "error_url", spree.dineromail_success_url(order_number: @order.number) %>
+		<%= hidden_field_tag "error_url", spree.dineromail_failure_url(order_number: @order.number) %>
 
 		<% @order.line_items.each_with_index do |item, i| %>
 			<% index = i + 1 %>

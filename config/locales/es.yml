@@ -1,0 +1,12 @@
+es:
+  dm_payment_success:
+    Su pago con Dineromail se ha efectuado con éxito.
+
+    Por  favor tenga  en cuenta  que  el estado  de su  pago puede  tardar
+    algunas  horas en reflejarse en este sitio.
+  dm_payment_failure: "Su pago no pudo ser procesado por Dineromail"
+  dm_payment_pending:
+    Su orden fue procesada con éxito aunque su pago aún se encuentra pendiente.
+
+    En cuanto su pago se concrete su pedido será finalizado.
+  dm_invalid_order: "La órden especificada es inválida"

@@ -1,0 +1,11 @@
+en:
+  dm_payment_success:
+    Your payent with Dineromail was successful.
+
+    Please take into account that this payment may take some hours to reflect
+    on this site.
+  dm_payment_failure: "Your payment could not be processed by Dineromail"
+  dm_payment_pending:
+    Your order has been placed but your payment is still pending we will ship
+    your order and contact you as soon as the payment is processed
+  dm_invalid_order: "The specified order is invalid"

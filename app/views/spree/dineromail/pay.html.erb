@@ -1,0 +1,43 @@
+<% preferences = @order.payments.last.payment_method.preferences %>
+<form action='https://checkout.dineromail.com/CheckOut' method='post' id='dineromail_form'>
+		<%= hidden_field_tag "merchant", preferences[:dineromail_email] %>
+		<%= hidden_field_tag "country_id", preferences[:country_id] %>
+		<%= hidden_field_tag "seller_name", preferences[:seller_name] %>
+		<%= hidden_field_tag "transaction_id", @order.number %>
+		<%= hidden_field_tag "url_redirect_enabled", "1" %>
+		<%= hidden_field_tag "ok_url", spree.dineromail_success_url(order_number: @order.number) %>
+		<%= hidden_field_tag "pending_url", spree.dineromail_pending_url(order_number: @order.number) %>
+		<%= hidden_field_tag "error_url", spree.dineromail_success_url(order_number: @order.number) %>
+
+		<% @order.line_items.each_with_index do |item, i| %>
+			<% index = i + 1 %>
+			<%= hidden_field_tag "item_name_#{index}", item.product.name %>
+			<%= hidden_field_tag "item_id_#{index}", item.product.id %>
+			<%= hidden_field_tag "item_ammount_#{index}", number_with_precision(item.price, precision: 2) %>
+			<%= hidden_field_tag "item_quantity_#{index}", item.quantity %>
+			<%= hidden_field_tag "item_currency_#{index}", item.currency %>
+		<% end %>
+
+		<% @order.shipments.each_with_index do |item, i| %>
+			<% index =  @order.line_items.count + i + 1 %>
+			<%= hidden_field_tag "item_name_#{index}", "Shipment #{index}" %>
+			<%= hidden_field_tag "item_id_#{index}", item.number %>
+			<%= hidden_field_tag "item_ammount_#{index}", number_with_precision(item.cost, precision: 2) %>
+			<%= hidden_field_tag "item_quantity_#{index}", "1" %>
+			<%= hidden_field_tag "item_currency_#{index}", item.currency %>
+
+		<% end %>
+
+		<%= hidden_field_tag "buyer_name", @order.ship_address.firstname %>
+		<%= hidden_field_tag "buyer_lastname", @order.ship_address.lastname %>
+		<%= hidden_field_tag "buyer_zip_code", 	@order.ship_address.zipcode	%>
+		<%= hidden_field_tag "buyer_street", @order.ship_address.address1 %>
+		<%= hidden_field_tag "buyer_city", @order.ship_address.city	%>
+		<%= hidden_field_tag "buyer_country", @order.ship_address.country.name %>
+		<%= hidden_field_tag "buyer_phone", @order.ship_address.phone %>
+		<%= hidden_field_tag "buyer_email", @order.email	%>
+	</form>
+
+	<script type="text/javascript">
+		document.getElementById('dineromail_form').submit();
+	</script>

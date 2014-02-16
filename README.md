@@ -1,7 +1,7 @@
 SpreeDineromail
 ===============
 
-Introduction goes here.
+This gems adds Dineromail payment method. Its based on the [nicolas-simplex / dineromail](https://github.com/jstnn/spree_dineromail "nicolas-simplex / dineromail")
 
 Installation
 ------------
@@ -9,13 +9,26 @@ Installation
 Add spree_dineromail to your Gemfile:
 
 ```ruby
-gem 'spree_dineromail'
+gem 'spree_dineromail', :git => 'https://github.com/lhpaul/spree_dineromail'
 ```
 Bundle your dependencies and run the installation generator:
 
 ```shell
 bundle
 bundle exec rails g spree_dineromail:install
+```
+You configurate the gem to work with [dinero_mail_fake_ipn](https://github.com/code54/dinero_mail_fake_ipn "dinero_mail_fake_ipn")
+```yml
+## config/dineromail
+development:
+    checkout_url: http://localhost:4000/integration_requests
+    ipn_url: http://localhost:4000/queries
+staging:
+    checkout_url: http://localhost:4000/integration_requests
+    ipn_url: http://localhost:4000/queries
+production:
+    checkout_url: https://chile.dineromail.com/Vender/ConsultaPago.asp
+    ipn_url: https://chile.dineromail.com/Vender/ConsultaPago.asp
 ```
 
 Testing
@@ -36,4 +49,4 @@ Simply add this require statement to your spec_helper:
 require 'spree_dineromail/factories'
 ```
 
-Copyright (c) 2014 [name of extension creator], released under the New BSD License
+Copyright (c) 2014 Luis Hernan Paul, released under the New BSD License

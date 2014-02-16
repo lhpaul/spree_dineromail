@@ -1,5 +1,5 @@
 <% preferences = @order.payments.last.payment_method.preferences %>
-<form action='https://checkout.dineromail.com/CheckOut' method='post' id='dineromail_form'>
+<form action="<%= DINEROMAIL['checkout_url'] %>" method='post' id='dineromail_form'>
 		<%= hidden_field_tag "merchant", preferences[:dineromail_email] %>
 		<%= hidden_field_tag "country_id", preferences[:country_id] %>
 		<%= hidden_field_tag "seller_name", preferences[:seller_name] %>

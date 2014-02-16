@@ -1,15 +1,21 @@
 # -*- encoding : utf-8 -*-
 module Spree
   class DineromailController < Spree::BaseController
-    before_filter :get_order
+    before_filter :get_order, :except => [:ipn]
 
     def success
       advance_state
+      @order.payments.each do |p|
+        p.started_processing
+      end
       redirect_to order_path(:id => @order.number), :notice => Spree.t(:order_processed_successfully)
     end
 
     def pending
       advance_state
+      @order.payments.each do |p|
+        p.started_processing
+      end
       redirect_to order_path(:id => @order.number), :notice => Spree.t(:order_processed_successfully)
     end
 
@@ -18,8 +24,22 @@ module Spree
       redirect_to checkout_state_path(@order.state)
     end
 
-    def pay
-      render :layout => false
+    def ipn
+      notifications = Dineromail::Notification.parse(params["Notificacion"])
+      notifications.each do |notify|
+        if notify.valid_report?
+          order = Order.find_by_number(notify.transaction_id)
+          if notify.completed?
+            order.payments.last.complete
+          elsif notify.pending?
+            order.payments.last.pend
+          elsif notify.cancelled?
+            order.payments.last.failure
+          end
+          order.save
+        end
+      end
+      render :nothing => true
     end
 
     private

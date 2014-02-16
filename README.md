@@ -11,6 +11,12 @@ Add spree_dineromail to your Gemfile:
 ```ruby
 gem 'spree_dineromail'
 ```
+Bundle your dependencies and run the installation generator:
+
+```shell
+bundle
+bundle exec rails g spree_dineromail:install
+```
 
 Testing
 -------

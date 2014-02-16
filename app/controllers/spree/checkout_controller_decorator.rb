@@ -10,7 +10,7 @@ Spree::CheckoutController.class_eval do
 
     if @payment_method && @payment_method.kind_of?(Spree::PaymentMethod::Dineromail)
       @order.update_attributes(object_params)
-      redirect_to dineromail_pay_path(:order_number => @order.number)
+      render 'spree/dineromail/pay', :layout => false
     end
   end
 end

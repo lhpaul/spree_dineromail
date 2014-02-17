@@ -19,7 +19,7 @@ bundle exec rails g spree_dineromail:install
 ```
 You configurate the gem to work with [dinero_mail_fake_ipn](https://github.com/code54/dinero_mail_fake_ipn "dinero_mail_fake_ipn")
 ```yml
-## config/dineromail
+## config/dineromail.yml
 development:
     checkout_url: http://localhost:4000/integration_requests
     ipn_url: http://localhost:4000/queries

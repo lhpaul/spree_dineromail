@@ -27,7 +27,7 @@ staging:
     checkout_url: http://localhost:4000/integration_requests
     ipn_url: http://localhost:4000/queries
 production:
-    checkout_url: https://chile.dineromail.com/Vender/ConsultaPago.asp
+    checkout_url: https://checkout.dineromail.com/CheckOut
     ipn_url: https://chile.dineromail.com/Vender/ConsultaPago.asp
 ```
 

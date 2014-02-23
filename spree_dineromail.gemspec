@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_dineromail'
-  s.version     = '2-0-stable'
+  s.version     = '1.0'
   s.summary     = 'Adds dineromail payment method'
   s.description = 'Adds dineromail payment method'
   s.required_ruby_version = '>= 1.9.3'

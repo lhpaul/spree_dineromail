@@ -17,7 +17,7 @@ module SpreeDineromail
       end
     end
 
-    initializer "spree_payment_network.register.payment_methods" do |app|
+    initializer "spree.register.payment_methods" do |app|
       app.config.spree.payment_methods += [Spree::PaymentMethod::Dineromail]
     end
 

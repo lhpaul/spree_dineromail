@@ -17,10 +17,10 @@ module SpreeDineromail
       end
     end
 
-    initializer "spree_payment_network.register.payment_methods" do |app|
-      app.config.spree.payment_methods += [Spree::PaymentMethod::Dineromail]
-    end
-
     config.to_prepare &method(:activate).to_proc
+
+    initializer "spree.paypal_express.payment_methods", :after => "spree.register.payment_methods" do |app|
+      app.config.spree.payment_methods << Spree::PaymentMethod::Dineromail
+    end
   end
 end
